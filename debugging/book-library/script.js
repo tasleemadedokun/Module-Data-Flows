@@ -1,10 +1,5 @@
 let myLibrary = [];
 
-window.addEventListener("load", function (e) {
-  populateStorage();
-  render();
-});
-
 function populateStorage() {
   if (myLibrary.length == 0) {
     let book1 = new Book("Robison Crusoe", "Daniel Defoe", "252", true);
@@ -39,7 +34,7 @@ function addBook() {
     alert("Please fill all fields!");
     return false;
   } else {
-    let book = new Book(title.value, author.value, pages.value, check.checked);
+    let book = new Book(title.value, author.value, parseInt(pages.value), check.checked);
     myLibrary.push(book);
     render();
   }
