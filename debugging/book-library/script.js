@@ -29,7 +29,7 @@ function addBook() {
   const authorValue = authorInput.value.trim();
   const pagesValue = Number(pagesInput.value);
 
-  if (!titleValue || !authorValue || pagesValue <= 0) {
+  if (!titleValue || !authorValue || Number.isNaN (pagesValue)<= 0) {
     alert("Please fill all fields correctly!");
     return;
   }
