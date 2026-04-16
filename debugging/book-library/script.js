@@ -29,7 +29,12 @@ function addBook() {
   const authorValue = authorInput.value.trim();
   const pagesValue = Number(pagesInput.value);
 
-  if (!titleValue || !authorValue || Number.isNaN (pagesValue)<= 0) {
+  if (
+    !titleValue ||
+    !authorValue ||
+    Number.isNaN(pagesValue) ||
+    pagesValue <= 0
+  ) {
     alert("Please fill all fields correctly!");
     return;
   }
@@ -40,8 +45,8 @@ function addBook() {
     pagesValue,
     checkInput.checked
   );
-  myLibrary.push(book);
 
+  myLibrary.push(book);
   render();
 }
 
@@ -53,20 +58,12 @@ function Book(title, author, pages, check) {
 }
 
 function render() {
-  const table = document.getElementById("display");
+  const tbody = document.querySelector("#display tbody");
 
-  table.innerHTML = `
-    <tr>
-      <th>Title</th>
-      <th>Author</th>
-      <th>Pages</th>
-      <th>Read</th>
-      <th>Delete</th>
-    </tr>
-  `;
+  tbody.innerHTML = "";
 
   myLibrary.forEach((book, i) => {
-    const row = table.insertRow();
+    const row = tbody.insertRow();
 
     const titleCell = row.insertCell(0);
     const authorCell = row.insertCell(1);
@@ -102,4 +99,5 @@ function render() {
     deleteCell.appendChild(deleteBtn);
   });
 }
+
 window.addBook = addBook;
